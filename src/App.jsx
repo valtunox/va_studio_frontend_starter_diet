@@ -37,21 +37,17 @@ const EcommerceApp = lazy(() => import('../templates/ecommerce/App.jsx'))
 const templates = {
   aiassistant: lazy(() => import('../templates/aiassistant/App.jsx')),
   ecommerce: lazy(() => import('../templates/ecommerce/App.jsx')),
-  saas: lazy(() => import('../templates/saas/App.jsx')),
   portfolio: lazy(() => import('../templates/portfolio/App.jsx')),
   blog: lazy(() => import('../templates/blog/App.jsx')),
   crm: lazy(() => import('../templates/crm/App.jsx')),
   erp: lazy(() => import('../templates/erp/App.jsx')),
   dashboard: lazy(() => import('../templates/dashboard/App.jsx')),
   diet: lazy(() => import('../templates/diet/App.jsx')),
-  sports: lazy(() => import('../templates/sports/App.jsx')),
   finance: lazy(() => import('../templates/finance/App.jsx')),
-  sales: lazy(() => import('../templates/sales/App.jsx')),
   marketing: lazy(() => import('../templates/marketing/App.jsx')),
   login: lazy(() => import('../templates/login/App.jsx')),
   register: lazy(() => import('../templates/register/App.jsx')),
   onboarding: lazy(() => import('../templates/onboarding/App.jsx')),
-  leads: lazy(() => import('../templates/leads/App.jsx')),
 }
 
 /* ------------------------------------------------------------------ */
