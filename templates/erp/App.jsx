@@ -336,7 +336,7 @@ const inventoryStatusLabel = {
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')

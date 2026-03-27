@@ -5,13 +5,14 @@ import {
   Smartphone, Shirt, Home, Dumbbell, Sparkles, Car, BookOpen,
   Apple, Package, MapPin, Store, ChevronDown, ArrowRight,
   Monitor, Gamepad2, Baby, Leaf, X, Plus, Minus, Trash2, Check,
-  ChevronLeft, Filter, SlidersHorizontal, Eye
+  ChevronLeft, Filter, SlidersHorizontal, Eye, LogOut, Settings, UserCircle
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ThemeSwitcher } from '@/components/shared/ThemeSwitcher'
+import { useAuth } from '@/context/AuthContext'
 
 /* ------------------------------------------------------------------ */
 /*  DATA                                                               */
@@ -390,7 +391,9 @@ function CartDrawer({ isOpen, onClose, items, onUpdateQty, onRemove }) {
 /*  MAIN COMPONENT                                                     */
 /* ------------------------------------------------------------------ */
 
-export default function EcommerceMarketplace() {
+export default function EcommerceMarketplace({ onNavigate }) {
+  const { user, isAuthenticated, logout } = useAuth()
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
   const [cartItems, setCartItems] = useState([])
@@ -547,10 +550,73 @@ export default function EcommerceMarketplace() {
               )}
             </Button>
 
-            <Button variant="ghost" className="relative p-2">
-              <User className="h-5 w-5" />
-              <span className="hidden md:inline ml-1 text-sm">Sign In</span>
-            </Button>
+            {isAuthenticated ? (
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  className="relative p-2 flex items-center gap-2"
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+                    {(user?.full_name || user?.email || '?').charAt(0).toUpperCase()}
+                  </div>
+                  <span className="hidden md:inline text-sm font-medium truncate max-w-[100px]">
+                    {user?.full_name || user?.email?.split('@')[0]}
+                  </span>
+                  <ChevronDown className="h-3.5 w-3.5 hidden md:block" />
+                </Button>
+                {userMenuOpen && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setUserMenuOpen(false)} />
+                    <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 z-50 py-2 overflow-hidden">
+                      {/* User info */}
+                      <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+                        <p className="text-sm font-semibold text-slate-900 dark:text-white">{user?.full_name || 'User'}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user?.email}</p>
+                        {user?.role && (
+                          <span className="inline-block mt-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 uppercase">
+                            {user.role}
+                          </span>
+                        )}
+                      </div>
+                      {/* Menu items */}
+                      <button
+                        onClick={() => { setUserMenuOpen(false); onNavigate && onNavigate('profile') }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                      >
+                        <UserCircle className="h-4 w-4 text-slate-400" /> My Profile
+                      </button>
+                      <button
+                        onClick={() => { setUserMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                      >
+                        <ShoppingBag className="h-4 w-4 text-slate-400" /> My Orders
+                      </button>
+                      <button
+                        onClick={() => { setUserMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                      >
+                        <Settings className="h-4 w-4 text-slate-400" /> Settings
+                      </button>
+                      {/* Logout */}
+                      <div className="border-t border-slate-100 dark:border-slate-700 mt-1 pt-1">
+                        <button
+                          onClick={() => { setUserMenuOpen(false); logout() }}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        >
+                          <LogOut className="h-4 w-4" /> Sign Out
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <Button variant="ghost" className="relative p-2" onClick={() => onNavigate && onNavigate('login')}>
+                <User className="h-5 w-5" />
+                <span className="hidden md:inline ml-1 text-sm">Sign In</span>
+              </Button>
+            )}
 
             <Button variant="ghost" className="relative p-2" onClick={() => setCartOpen(true)}>
               <ShoppingCart className="h-5 w-5" />

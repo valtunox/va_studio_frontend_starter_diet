@@ -20,7 +20,7 @@ const programs = [
   { title: 'Workforce Readiness', desc: 'Career coaching, digital skills, and hiring partnerships for local talent.' },
 ]
 
-export default function OrganizationTemplate() {
+export default function OrganizationTemplate({ onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (

@@ -4,6 +4,6 @@
  */
 import AIAssistant from './AIAssistant'
 
-export default function App() {
+export default function App({ onNavigate }) {
   return <AIAssistant isOpen={true} fullscreenMode={true} />
 }

@@ -204,7 +204,7 @@ const timeRanges = ['Today', '7 Days', '30 Days', '90 Days', 'Year']
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [selectedRange, setSelectedRange] = useState('30 Days')
   const [activeTab, setActiveTab] = useState('overview')

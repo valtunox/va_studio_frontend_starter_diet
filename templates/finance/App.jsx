@@ -177,7 +177,7 @@ function statusVariant(s) {
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
   const [activeSidebar, setActiveSidebar] = useState('dashboard')

@@ -122,7 +122,7 @@ function GlowCard({ children, className = '', glowColor = 'cyan' }) {
 /*  MAIN APP                                                           */
 /* ------------------------------------------------------------------ */
 
-export default function SaaS2LandingPage() {
+export default function SaaS2LandingPage({ onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -165,7 +165,7 @@ export default function SaaS2LandingPage() {
           {/* Right */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeSwitcher />
-            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">Sign In</Button>
+            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white" onClick={() => onNavigate && onNavigate('login')}>Sign In</Button>
             <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold hover:from-cyan-400 hover:to-emerald-400 shadow-lg shadow-cyan-500/20">
               Start Building
             </Button>
@@ -185,7 +185,7 @@ export default function SaaS2LandingPage() {
             ))}
             <div className="flex items-center gap-3 pt-3 border-t border-slate-800">
               <ThemeSwitcher />
-              <Button variant="ghost" size="sm" className="text-slate-300">Sign In</Button>
+              <Button variant="ghost" size="sm" className="text-slate-300" onClick={() => onNavigate && onNavigate('login')}>Sign In</Button>
               <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold">Start Building</Button>
             </div>
           </div>
@@ -474,6 +474,7 @@ export default function SaaS2LandingPage() {
                       ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold hover:from-cyan-400 hover:to-emerald-400 shadow-lg shadow-cyan-500/20'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
                   }`}
+                  onClick={() => onNavigate && onNavigate('register')}
                 >
                   {tier.price === 'Free' ? 'Get Started' : 'Subscribe'} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

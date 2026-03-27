@@ -76,7 +76,7 @@ function Toggle({ checked, onChange }) {
   )
 }
 
-export default function App() {
+export default function App({ onNavigate }) {
   const [step, setStep] = useState(1)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -638,7 +638,7 @@ export default function App() {
             {/* Sign In Link */}
             <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
               Already have an account?{' '}
-              <span className="text-indigo-600 dark:text-indigo-400 font-medium cursor-pointer hover:underline">Sign in</span>
+              <span className="text-indigo-600 dark:text-indigo-400 font-medium cursor-pointer hover:underline" onClick={() => onNavigate && onNavigate('login')}>Sign in</span>
             </p>
           </div>
         </div>

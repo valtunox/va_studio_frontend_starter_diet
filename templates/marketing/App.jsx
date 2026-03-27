@@ -282,7 +282,7 @@ function RatingBadge({ rating }) {
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('overview')
 

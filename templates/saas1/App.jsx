@@ -124,7 +124,7 @@ const footerLinks = {
 
 const trustedBy = ['Acme Corp', 'Globex', 'Initech', 'Umbrella', 'Massive Dynamic', 'Soylent']
 
-export default function SaasTemplate() {
+export default function SaasTemplate({ onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -151,10 +151,10 @@ export default function SaasTemplate() {
 
           <div className="flex items-center gap-2">
             <ThemeSwitcher />
-            <Button variant="ghost" className="hidden text-sm sm:inline-flex">
+            <Button variant="ghost" className="hidden text-sm sm:inline-flex" onClick={() => onNavigate && onNavigate('login')}>
               Sign In
             </Button>
-            <Button className="hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-sm text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 sm:inline-flex">
+            <Button className="hidden bg-gradient-to-r from-purple-600 to-indigo-600 text-sm text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 sm:inline-flex" onClick={() => onNavigate && onNavigate('register')}>
               Get Started <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
             <button
@@ -177,8 +177,8 @@ export default function SaasTemplate() {
                 </a>
               ))}
               <div className="flex gap-2 pt-3">
-                <Button variant="outline" className="flex-1 text-sm">Sign In</Button>
-                <Button className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-sm text-white">Get Started</Button>
+                <Button variant="outline" className="flex-1 text-sm" onClick={() => onNavigate && onNavigate('login')}>Sign In</Button>
+                <Button className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-sm text-white" onClick={() => onNavigate && onNavigate('register')}>Get Started</Button>
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function SaasTemplate() {
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 sm:w-auto">
+              <Button size="lg" className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 sm:w-auto" onClick={() => onNavigate && onNavigate('register')}>
                 Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto">

@@ -26,7 +26,7 @@ const results = [
   { company: 'Axiom Cloud', outcome: 'Launched enterprise offering in 6 weeks, closing 3 anchor accounts.' },
 ]
 
-export default function BusinessTemplate() {
+export default function BusinessTemplate({ onNavigate }) {
   const [open, setOpen] = useState(false)
 
   return (

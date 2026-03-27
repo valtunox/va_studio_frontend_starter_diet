@@ -19,11 +19,11 @@
  * @see {@link ./lib/api.js} for backend API client
  */
 
-import { lazy, Suspense, useState } from 'react'
-import { createBrowserRouter, RouterProvider, useParams, Link } from 'react-router-dom'
+import { lazy, Suspense, useState, useCallback } from 'react'
+import { createBrowserRouter, RouterProvider, useParams, useNavigate, Link } from 'react-router-dom'
 import { BackendStatusProvider, useBackendContext } from './context/BackendStatusContext'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
-import { AuthProvider, useAuth } from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 import { TemplateSwitcher } from './components/shared/TemplateSwitcher'
 
 /* ------------------------------------------------------------------ */
@@ -51,6 +51,7 @@ const templates = {
   formbuilder: lazy(() => import('../templates/formbuilder/App.jsx')),
   nutritionapp: lazy(() => import('../templates/nutritionapp/App.jsx')),
   calendar: lazy(() => import('../templates/calendar/App.jsx')),
+  profile: lazy(() => import('../templates/profile/App.jsx')),
 }
 
 /* ------------------------------------------------------------------ */
@@ -127,7 +128,6 @@ function ConnectivityBanner() {
 
 function HomePage() {
   const { isDark } = useTheme()
-  const { user, isAuthenticated, logout } = useAuth()
   const [activeTemplate, setActiveTemplate] = useState('ecommerce')
   const ActiveComponent = templates[activeTemplate]
 
@@ -139,17 +139,6 @@ function HomePage() {
   return (
     <div className={isDark ? 'dark' : ''}>
       <ConnectivityBanner />
-      {/* Auth status bar */}
-      {isAuthenticated && (
-        <div className="bg-indigo-600 dark:bg-indigo-900 text-white text-sm">
-          <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between">
-            <span>Signed in as <strong>{user?.full_name || user?.email}</strong></span>
-            <button onClick={logout} className="text-indigo-200 hover:text-white transition-colors text-xs font-medium">
-              Sign out
-            </button>
-          </div>
-        </div>
-      )}
       <Suspense fallback={<TemplateLoader />}>
         <ActiveComponent key={activeTemplate} onNavigate={handleNavigate} />
       </Suspense>
@@ -219,7 +208,12 @@ function NotFoundPage() {
 function TemplatePreview() {
   const { templateId } = useParams()
   const { isDark } = useTheme()
+  const navigate = useNavigate()
   const Component = templates[templateId]
+
+  const handleNavigate = useCallback((target) => {
+    if (templates[target]) navigate(`/templates/${target}`)
+  }, [navigate])
 
   if (!Component) {
     return (
@@ -263,7 +257,7 @@ function TemplatePreview() {
   return (
     <div className={isDark ? 'dark' : ''}>
       <Suspense fallback={<TemplateLoader />}>
-        <Component />
+        <Component onNavigate={handleNavigate} />
       </Suspense>
     </div>
   )

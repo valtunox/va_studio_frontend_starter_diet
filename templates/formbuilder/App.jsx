@@ -183,7 +183,7 @@ function RightPanel() {
   )
 }
 
-function App() {
+function App({ onNavigate }) {
   const [currentStep, setCurrentStep] = useState(1)
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)

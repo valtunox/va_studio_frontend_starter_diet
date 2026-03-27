@@ -144,7 +144,7 @@ const tabsList = ['Overview', 'Meal Plans', 'Recipes', 'Grocery List', 'Progress
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [groceryItems, setGroceryItems] = useState(groceryCategories)
   const [activeTab, setActiveTab] = useState('Overview')

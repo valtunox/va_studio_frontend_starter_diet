@@ -85,7 +85,7 @@ const weightDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 /*  COMPONENT                                                          */
 /* ------------------------------------------------------------------ */
 
-export default function NutritionApp() {
+export default function NutritionApp({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('home')
   const [waterCount, setWaterCount] = useState(5)
   const [recipeFilter, setRecipeFilter] = useState('All')

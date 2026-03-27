@@ -104,7 +104,7 @@ const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 /*  COMPONENT                                                          */
 /* ------------------------------------------------------------------ */
 
-export default function CalendarBookingApp() {
+export default function CalendarBookingApp({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('calendar')
   const [selectedDate, setSelectedDate] = useState(23)
   const [calendarMode, setCalendarMode] = useState('month')

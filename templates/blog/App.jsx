@@ -169,7 +169,7 @@ function categoryBadge(category) {
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [postFilter, setPostFilter] = useState('All')

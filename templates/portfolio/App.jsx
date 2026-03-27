@@ -198,7 +198,7 @@ const inlineStyles = `
 /*  APP                                                                */
 /* ------------------------------------------------------------------ */
 
-function App() {
+function App({ onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('about')
   const [projectFilter, setProjectFilter] = useState('All')

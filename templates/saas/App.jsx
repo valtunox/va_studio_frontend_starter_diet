@@ -170,7 +170,7 @@ const footerLinks = {
 /*  COMPONENT                                                          */
 /* ------------------------------------------------------------------ */
 
-export default function SaasLandingPage() {
+export default function SaasLandingPage({ onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [billingCycle, setBillingCycle] = useState('monthly')
 
@@ -197,8 +197,8 @@ export default function SaasLandingPage() {
 
           <div className="flex items-center gap-2">
             <ThemeSwitcher />
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-sm">Sign In</Button>
-            <Button size="sm" className="hidden sm:inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0 shadow-lg shadow-purple-500/25">
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-sm" onClick={() => onNavigate && onNavigate('login')}>Sign In</Button>
+            <Button size="sm" className="hidden sm:inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0 shadow-lg shadow-purple-500/25" onClick={() => onNavigate && onNavigate('register')}>
               Get Started
             </Button>
             <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -215,8 +215,8 @@ export default function SaasLandingPage() {
               </a>
             ))}
             <div className="flex gap-2 pt-2">
-              <Button variant="outline" size="sm" className="flex-1">Sign In</Button>
-              <Button size="sm" className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-0">Get Started</Button>
+              <Button variant="outline" size="sm" className="flex-1" onClick={() => onNavigate && onNavigate('login')}>Sign In</Button>
+              <Button size="sm" className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-0" onClick={() => onNavigate && onNavigate('register')}>Get Started</Button>
             </div>
           </div>
         )}
@@ -250,7 +250,7 @@ export default function SaasLandingPage() {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0 shadow-lg shadow-purple-500/25 px-8">
+            <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white border-0 shadow-lg shadow-purple-500/25 px-8" onClick={() => onNavigate && onNavigate('register')}>
               Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 border-gray-300 dark:border-gray-700">
@@ -570,7 +570,7 @@ export default function SaasLandingPage() {
               placeholder="Enter your email"
               className="bg-white/15 border-white/25 text-white placeholder:text-white/50 backdrop-blur-sm focus:bg-white/20"
             />
-            <Button className="bg-white text-purple-700 hover:bg-white/90 font-semibold px-6 flex-shrink-0 shadow-lg">
+            <Button className="bg-white text-purple-700 hover:bg-white/90 font-semibold px-6 flex-shrink-0 shadow-lg" onClick={() => onNavigate && onNavigate('register')}>
               Start Free Trial
             </Button>
           </div>

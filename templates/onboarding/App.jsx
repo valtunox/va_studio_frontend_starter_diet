@@ -52,7 +52,7 @@ function ProgressRing({ percent, size = 56, stroke = 4 }) {
   )
 }
 
-function App() {
+function App({ onNavigate }) {
   const [currentStep, setCurrentStep] = useState(1)
 
   const [firstName, setFirstName] = useState('')
